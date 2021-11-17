@@ -1,0 +1,9 @@
+PRAGMA foreign_keys = ON;
+CREATE TABLE listings(
+  id INTEGER,
+  username VARCHAR(20) NOT NULL,
+  title VARCHAR(50) NOT NULL,
+  body VARCHAR(500) NOT NULL,
+  price FLOAT NOT NULL,
+  PRIMARY KEY(id AUTOINCREMENT)
+);
