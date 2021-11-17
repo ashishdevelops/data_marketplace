@@ -6,7 +6,7 @@ app = flask.Flask(__name__)  # pylint: disable=invalid-name
 
 
 #  Read settings from config module (insta485/config.py)
-app.config.from_object('insta485.config')
+app.config.from_object('datamarketplace.config')
 
 
 #  Overlay settings read from a Python
@@ -16,13 +16,11 @@ app.config.from_object('insta485.config')
 #
 #  EXAMPLE:
 #  $ export INSTA485_SETTINGS=secret_key_config.py
-app.config.from_envvar('INSTA485_SETTINGS', silent=True)
+# app.config.from_envvar('INSTA485_SETTINGS', silent=True)
 
 
 #  Tell our app about views and model.  This is dangerously close to a
 #  circular import, which is naughty, but Flask was designed that way.
 #  (Reference http://flask.pocoo.org/docs/patterns/packages/)  We're
 #  going to tell pylint and pycodestyle to ignore this coding style violation.
-import insta485.api  # noqa: E402  pylint: disable=wrong-import-position
-import insta485.views  # noqa: E402  pylint: disable=wrong-import-position
-import insta485.model  # noqa: E402  pylint: disable=wrong-import-position
+import datamarketplace.api  # noqa: E402  pylint: disable=wrong-import-position
