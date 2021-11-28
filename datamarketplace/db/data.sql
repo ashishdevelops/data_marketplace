@@ -6,15 +6,17 @@ VALUES(
         'my data comes as promised',
         100.18
     );
+INSERT INTO listings(username, title, body, price)
 VALUES(
         'yiwei',
         'i am selling data',
         'this data is pretty good',
         200.05
     );
+INSERT INTO listings(username, title, body, price)
 VALUES(
         'junliang',
         'blockchain.',
-        'artificial intelligence.',
+        'machine learning.',
         150.12
     );
