@@ -1,4 +1,5 @@
 import FileUpload from './FileUpload';
+import Listing from './Listing';
 import logo from './logo.svg';
 import './App.css';
 
@@ -20,6 +21,7 @@ function App() {
         </a>
       </header>
       <FileUpload />
+      <Listing />
     </div>
   );
 }
