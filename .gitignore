@@ -12,7 +12,6 @@
 /build
 
 # misc
-.DS_Store
 .env.local
 .env.development.local
 .env.test.local
@@ -23,6 +22,27 @@ yarn-debug.log*
 yarn-error.log*
 
 # Python
-env/
-__pycache__/
 *.pyc
+__pycache__/
+*.egg-info*
+dist/
+env/
+venv/
+venv3/
+.venv/
+.pytest_cache
+
+# Text editors and IDEs
+*~
+*.lock
+*.swp
+.vscode
+.ropeproject/
+.vscode/
+
+# macOS system files
+*.DS_Store
+
+# Google Drive and Dropbox
+Icon
+.dropbox*
