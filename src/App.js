@@ -1,3 +1,4 @@
+import FileUpload from './FileUpload';
 import logo from './logo.svg';
 import './App.css';
 
@@ -18,6 +19,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <FileUpload />
     </div>
   );
 }
