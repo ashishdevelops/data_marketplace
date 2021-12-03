@@ -7,6 +7,15 @@ import os
 
 app = flask.Flask(__name__)
 
+def dict_factory(cursor, row):
+    """Convert database row objects to a dictionary keyed on column name.
+
+    This is useful for building dictionaries which are then used to render a
+    template.  Note that this would be inefficient for large queries.
+    """
+    return {col[0]: row[idx] for idx, col in enumerate(cursor.description)}
+
+
 # def create_nft(sample_token_uri):
 #     network.connect('rinkeby')
 #     dev = accounts.add(config["wallets"]["from_key"])
@@ -30,9 +39,17 @@ def get_listings():
     """Return a list of all listings."""
 
     with sqlite3.connect('datamarketplace/db/application.db') as con:
+        con.row_factory = dict_factory
         cur = con.cursor()
         listings = cur.execute('SELECT * FROM listings')
-        return flask.jsonify(listings.fetchall())
+        dic_example = listings.fetchall()[0]
+        context = {
+            "name": dic_example["username"],
+            "title": dic_example["title"],
+            "body": dic_example["body"],
+            "price": dic_example["price"],
+        }
+        return flask.jsonify(**context)
 
 
 @app.route('/api/post', methods=['POST'])

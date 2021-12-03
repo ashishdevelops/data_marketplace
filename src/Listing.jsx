@@ -6,7 +6,7 @@ class Listing extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null,
+      data: {},
     }
   } // constructor
 
@@ -14,21 +14,22 @@ class Listing extends React.Component {
     axios.get("api/listings")
       .then((response) => {
         // handle success
+        this.setState({
+          data: response.data,
+        });
         console.log(response);
-      })
-      .catch((error) => {
-        // handle error
-        console.log(error);
-      })
-      .then(() => {
-        // always executed
-      });
+      }) // then
+      .catch((error) => console.log(error));
   } // componentDidMount
 
   render() {
+    const { data } = this.state;
     return(
         <div>
-          Hello world
+          <h3>{data.name}</h3>
+          <h2>{data.title}</h2>
+          <div>{data.body}</div>
+          <h3>{data.price}</h3>
         </div>
     ); // return
   } // render
