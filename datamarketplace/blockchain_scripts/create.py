@@ -1,10 +1,12 @@
 from brownie import SimpleCollectible, accounts, network, config
-from scripts.helpful_scripts import OPENSEA_FORMAT
 
 sample_token_uri = "https://ipfs.io/ipfs/Qmd9MCGtdVz2miNumBHDbvj8bigSgTwnr4SbyH6DNnpWdt?filename=0-PUG.json"
 
+OPENSEA_FORMAT = "https://testnets.opensea.io/assets/{}/{}"
+
 
 def main():
+    network.connect('rinkeby')
     dev = accounts.add(config["wallets"]["from_key"])
     print(network.show_active())
     simple_collectible = SimpleCollectible[len(SimpleCollectible) - 1]
@@ -18,3 +20,4 @@ def main():
         )
     )
     print('Please give up to 20 minutes, and hit the "refresh metadata" button')
+    network.disconnect()

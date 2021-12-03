@@ -1,5 +1,6 @@
 import flask
 import sqlite3
+from blockchain_scripts.create import main as create_nft
 
 app = flask.Flask(__name__)
 
@@ -44,7 +45,7 @@ app = flask.Flask(__name__)
 #         sqlite_db.close()
 
 
-@app.route('/listings')
+@app.route('api/listings')
 def get_listings():
     """Return a list of all listings."""
 
@@ -52,6 +53,16 @@ def get_listings():
         cur = con.cursor()
         listings = cur.execute('SELECT * FROM listings')
         return flask.jsonify(listings.fetchall())
+
+
+@app.route('api/post', methods=['POST'])
+def post_data():
+    """Return a list of all listings."""
+    context = {
+        'posted?': True
+    }
+    create_nft()
+    return flask.make_response(flask.jsonify(**context), 201)
 
 
 if __name__ == '__main__':
