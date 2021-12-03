@@ -6,7 +6,7 @@ OPENSEA_FORMAT = "https://testnets.opensea.io/assets/{}/{}"
 
 
 def main():
-    network.connect('rinkeby')
+    # network.connect('rinkeby')
     dev = accounts.add(config["wallets"]["from_key"])
     print(network.show_active())
     simple_collectible = SimpleCollectible[len(SimpleCollectible) - 1]
@@ -20,4 +20,4 @@ def main():
         )
     )
     print('Please give up to 20 minutes, and hit the "refresh metadata" button')
-    network.disconnect()
+    # network.disconnect()
