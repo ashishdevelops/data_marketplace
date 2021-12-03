@@ -38,14 +38,19 @@ def get_listings():
 @app.route('/api/post', methods=['POST'])
 def post_data():
     """Post a new listing."""
+    print(os.getenv('IPFS_PROJECT_ID'))
+    print(os.getenv('IPFS_PRIVATE_KEY'))
     context = {
         'posted?': True
     }
-    # file = {'file': flask.request.files['file']}
-    # requests.post('https://ipfs.infura.io:5001/api/v0/add', files=file, auth=(,))
+    # flask.request.files['file']
+    file = {'file': 'test_images/test-image.jpeg'}
+    response = requests.post('https://ipfs.infura.io:5001/api/v0/add', files=file,
+                             auth=(os.getenv('IPFS_PROJECT_ID'), os.getenv('IPFS_PRIVATE_KEY')))
     # client = ipfshttpclient.connect('https://ipfs.infura.io', auth=(,))
-    os.system(
-        "brownie run datamarketplace/blockchain_scripts/create.py --network rinkeby")
+    # os.system(
+    #     "brownie run datamarketplace/blockchain_scripts/create.py --network rinkeby")
+    context['ipfs'] = response.text
     return flask.make_response(flask.jsonify(**context), 201)
 
 
