@@ -42,12 +42,27 @@ def get_listings():
         con.row_factory = dict_factory
         cur = con.cursor()
         listings = cur.execute('SELECT * FROM listings')
-        dic_example = listings.fetchall()[0]
+        dict_list = listings.fetchall()
+        # dic_example = listings.fetchall()[0]
+        # context = {
+        #     "name": dic_example["username"],
+        #     "title": dic_example["title"],
+        #     "body": dic_example["body"],
+        #     "price": dic_example["price"],
+        # }
+        context_list = []
+        for d in dict_list:
+            ctxt= {
+                "id": d["id"],
+                "name": d["username"],
+                "title": d["title"],
+                "body": d["body"],
+                "price": d["price"],
+            }
+            context_list.append(ctxt)
+        print(context_list)
         context = {
-            "name": dic_example["username"],
-            "title": dic_example["title"],
-            "body": dic_example["body"],
-            "price": dic_example["price"],
+            "contextList": context_list
         }
         return flask.jsonify(**context)
 

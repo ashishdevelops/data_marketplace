@@ -72,7 +72,6 @@ class FileUpload extends React.Component {
     return(
       <div> 
         <h1>DataMarketPlace</h1> 
-        <h3>File Uploaded!</h3> 
         <div> 
             <input type="file" onChange={this.handleFileChange} /> 
             <button onClick={this.handleFileUpload}> 
